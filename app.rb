@@ -14,23 +14,23 @@ class LibraryApp
   end
 
   def list_all_books
-    puts "List of All Books:"
+    puts 'List of All Books:'
     @books.each do |book|
       puts "#{book.title} by #{book.author}"
     end
   end
 
   def list_all_people
-    puts "List of All People:"
+    puts 'List of All People:'
     @people.each do |person|
       puts "#{person.name} (ID: #{person.id})"
     end
   end
 
   def create_person
-    puts "Create a Person:"
-    puts "1. Create a Teacher"
-    puts "2. Create a Student"
+    puts 'Create a Person:'
+    puts '1. Create a Teacher'
+    puts '2. Create a Student'
     choice = gets.chomp.to_i
 
     case choice
@@ -39,7 +39,7 @@ class LibraryApp
     when 2
       create_student
     else
-      puts "Invalid choice."
+      puts 'Invalid choice.'
     end
   end
 
@@ -57,9 +57,9 @@ class LibraryApp
   end
 
   def create_student
-    puts "Enter student's name:"
+    puts 'Enter student\'s name:'
     name = gets.chomp
-    puts "Enter student's age:"
+    puts 'Enter student\'s age:'
     age = gets.chomp.to_i
 
     student = Student.new(age, name)
@@ -68,9 +68,9 @@ class LibraryApp
   end
 
   def create_book
-    puts "Enter book title:"
+    puts 'Enter book title:'
     title = gets.chomp
-    puts "Enter book author:"
+    puts 'Enter book author:'
     author = gets.chomp
 
     book = Book.new(title, author)
@@ -79,7 +79,7 @@ class LibraryApp
   end
 
   def create_rental
-    puts "Enter person's ID (teacher or student) who is renting the book:"
+    puts 'Enter person\'s ID (teacher or student) who is renting the book: '
     person_id = gets.chomp.to_i
     person = @people.find { |p| p.id == person_id }
 
@@ -88,7 +88,7 @@ class LibraryApp
       return
     end
 
-    puts "Enter book title to be rented:"
+    puts 'Enter book title to be rented:'
     book_title = gets.chomp
     book = @books.find { |b| b.title == book_title }
 
@@ -97,16 +97,16 @@ class LibraryApp
       return
     end
 
-    puts "Enter rental date (YYYY-MM-DD):"
+    puts 'Enter rental date (YYYY-MM-DD):'
     date = gets.chomp
 
     rental = Rental.new(date, book, person)
     @rentals << rental
-    puts "Rental recorded successfully."
+    puts 'Rental recorded successfully.'
   end
 
   def list_rentals_for_person
-    puts "Enter person's ID to list their rentals:"
+    puts 'Enter person\'s ID to list their rentals:'
     person_id = gets.chomp.to_i
     person = @people.find { |p| p.id == person_id }
 
@@ -122,40 +122,45 @@ class LibraryApp
     end
   end
 
+  MENU_OPTIONS = {
+    1 => :list_all_books,
+    2 => :list_all_people,
+    3 => :create_person,
+    4 => :create_book,
+    5 => :create_rental,
+    6 => :list_rentals_for_person,
+    7 => :quit
+  }.freeze
+
   def run
     loop do
-      puts "\nLibrary Management System"
-      puts "1. List all books"
-      puts "2. List all people"
-      puts "3. Create a person"
-      puts "4. Create a book"
-      puts "5. Create a rental"
-      puts "6. List rentals for a person"
-      puts "7. Quit"
-      print "Enter your choice: "
-
+      display_menu
       choice = gets.chomp.to_i
 
-      case choice
-      when 1
-        list_all_books
-      when 2
-        list_all_people
-      when 3
-        create_person
-      when 4
-        create_book
-      when 5
-        create_rental
-      when 6
-        list_rentals_for_person
-      when 7
-        puts "Exiting the Library Management System. Goodbye!"
-        break
+      if MENU_OPTIONS.key?(choice)
+        send(MENU_OPTIONS[choice])
       else
-        puts "Invalid choice. Please choose a valid option."
+        invalid_choice
       end
+
+      break if choice == 7
     end
+  end
+
+  def display_menu
+    puts "\nLibrary Management System"
+    puts '1. List all books'
+    puts '2. List all people'
+    puts '3. Create a person'
+    puts '4. Create a book'
+    puts '5. Create a rental'
+    puts '6. List rentals for a person'
+    puts '7. Quit'
+    print 'Enter your choice: '
+  end
+
+  def invalid_choice
+    puts 'Invalid choice. Please choose a valid option.'
   end
 end
 
