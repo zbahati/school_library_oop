@@ -132,6 +132,10 @@ class LibraryApp
     7 => :quit
   }.freeze
 
+  def quit
+    puts 'Exiting the Library Management System. Goodbye!'
+  end
+
   def run
     loop do
       display_menu
