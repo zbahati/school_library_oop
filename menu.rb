@@ -11,24 +11,22 @@ class Menu
     puts "\nLibrary Management System"
     puts '1. List all books'
     puts '2. List all people'
-    puts '3. Create a teacher'
-    puts '4. Create a student'
-    puts '5. Create a book'
-    puts '6. Create a rental'
-    puts '7. List rentals for a person'
-    puts '8. Quit'
+    puts '3. Create a teacher or student'
+    puts '4. Create a book'
+    puts '5. Create a rental'
+    puts '6. List rentals for a person'
+    puts '7. Quit'
     print 'Enter your choice: '
   end
 
   MENU_OPTIONS = {
     1 => :list_all_books,
     2 => :list_all_people,
-    3 => :create_teacher,
-    4 => :create_student,
-    5 => :create_book,
-    6 => :create_rental,
-    7 => :list_rentals_for_person,
-    8 => :quit
+    3 => :create_person,
+    4 => :create_book,
+    5 => :create_rental,
+    6 => :list_rentals_for_person,
+    7 => :quit
   }.freeze
 
   def handle_choice(choice)
@@ -40,7 +38,7 @@ class Menu
   end
 
   def valid_choice?(choice)
-    (1..8).include?(choice)
+    (1..7).include?(choice)
   end
 
   def list_all_books
@@ -57,19 +55,36 @@ class Menu
     end
   end
 
-  def create_teacher
-    puts "Enter teacher's name:"
-    name = gets.chomp
-    puts "Enter teacher's age:"
-    age = gets.chomp
-    puts "Enter teacher's specialization:"
-    specialization = gets.chomp
+  def create_person
+    puts 'Create a Person:'
+    puts '1. Create a Teacher'
+    puts '2. Create a Student'
+    choice = gets.chomp.to_i
 
-    if InputValidator.validate_integer_input(age)
-      teacher = @library_manager.create_person(age.to_i, name, specialization)
+    case choice
+    when 1
+      create_teacher
+    when 2
+      create_student
+    else
+      puts 'Invalid choice.'
+    end
+  end
+
+  def create_teacher
+    puts 'Enter teacher\'s name:'
+    name = gets.chomp
+    puts 'Enter teacher\'s age:'
+    age = gets.chomp.to_i
+
+    if age >= 18
+      puts "Enter teacher's specialization:"
+      specialization = gets.chomp
+
+      teacher = @library_manager.create_person(age, name, specialization)
       puts "Teacher #{teacher.name} (ID: #{teacher.id}) created successfully."
     else
-      puts 'Invalid age. Please enter a valid age.'
+      puts 'You must be 18 or older to create a teacher.'
     end
   end
 
@@ -77,13 +92,20 @@ class Menu
     puts 'Enter student\'s name:'
     name = gets.chomp
     puts 'Enter student\'s age:'
-    age = gets.chomp
+    age = gets.chomp.to_i
 
-    if InputValidator.validate_integer_input(age)
-      student = @library_manager.create_person(age.to_i, name)
-      puts "Student #{student.name} (ID: #{student.id}) created successfully."
+    if age >= 13
+      puts 'Do you have parent permission? (yes/no)'
+      permission = gets.chomp.downcase == 'yes'
+
+      if permission
+        student = @library_manager.create_person(age, name)
+        puts "Student #{student.name} (ID: #{student.id}) created successfully."
+      else
+        puts 'Permission denied. You must have parent permission to create a student.'
+      end
     else
-      puts 'Invalid age. Please enter a valid age.'
+      puts 'You must be 13 or older to create a student.'
     end
   end
 
@@ -159,5 +181,6 @@ class Menu
 
   def quit
     puts 'Exiting the Library Management System. Goodbye!'
+    exit()
   end
 end
