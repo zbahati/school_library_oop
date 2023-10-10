@@ -9,29 +9,25 @@ class Menu
 
   def display_menu
     puts "\nLibrary Management System"
-    puts '1. List all books'
-    puts '2. List all people'
-    puts '3. Create a teacher or student'
-    puts '4. Create a book'
-    puts '5. Create a rental'
-    puts '6. List rentals for a person'
-    puts '7. Quit'
+    MENU_OPTIONS.each do |key, value|
+      puts "#{key}. #{value[:label]}"
+    end
     print 'Enter your choice: '
   end
 
   MENU_OPTIONS = {
-    1 => :list_all_books,
-    2 => :list_all_people,
-    3 => :create_person,
-    4 => :create_book,
-    5 => :create_rental,
-    6 => :list_rentals_for_person,
-    7 => :quit
+    1 => { label: 'List all books', action: :list_all_books },
+    2 => { label: 'List all people', action: :list_all_people },
+    3 => { label: 'Create a teacher or student', action: :create_person },
+    4 => { label: 'Create a book', action: :create_book },
+    5 => { label: 'Create a rental', action: :create_rental },
+    6 => { label: 'List rentals for a person', action: :list_rentals_for_person },
+    7 => { label: 'Quit', action: :quit }
   }.freeze
 
   def handle_choice(choice)
     if MENU_OPTIONS.key?(choice)
-      send(MENU_OPTIONS[choice])
+      send(MENU_OPTIONS[choice][:action])
     else
       puts 'Invalid choice. Please choose a valid option.'
     end
@@ -181,6 +177,6 @@ class Menu
 
   def quit
     puts 'Exiting the Library Management System. Goodbye!'
-    exit()
+    exit
   end
 end
