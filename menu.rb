@@ -39,6 +39,10 @@ class Menu
     end
   end
 
+  def valid_choice?(choice)
+    (1..8).include?(choice)
+  end
+
   def list_all_books
     puts 'List of All Books:'
     @library_manager.books.each do |book|
