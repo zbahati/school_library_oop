@@ -1,3 +1,4 @@
+# menu.rb
 require_relative 'library_manager'
 require_relative 'input_validator'
 
@@ -19,20 +20,20 @@ class Menu
     print 'Enter your choice: '
   end
 
-  def valid_choice?(choice)
-    (1..8).include?(choice)
-  end
+  MENU_OPTIONS = {
+    1 => :list_all_books,
+    2 => :list_all_people,
+    3 => :create_teacher,
+    4 => :create_student,
+    5 => :create_book,
+    6 => :create_rental,
+    7 => :list_rentals_for_person,
+    8 => :quit
+  }.freeze
 
   def handle_choice(choice)
-    case choice
-    when 1 then list_all_books
-    when 2 then list_all_people
-    when 3 then create_teacher
-    when 4 then create_student
-    when 5 then create_book
-    when 6 then create_rental
-    when 7 then list_rentals_for_person
-    when 8 then quit
+    if MENU_OPTIONS.key?(choice)
+      send(MENU_OPTIONS[choice])
     else
       puts 'Invalid choice. Please choose a valid option.'
     end
@@ -101,28 +102,32 @@ class Menu
       person = @library_manager.people.find { |p| p.id == person_id }
 
       if person
-        puts 'Enter book title to be rented:'
-        book_title = gets.chomp
-        book = @library_manager.books.find { |b| b.title == book_title }
-
-        if book
-          puts 'Enter rental date (YYYY-MM-DD):'
-          date = gets.chomp
-
-          if InputValidator.validate_date_input(date)
-            rental = @library_manager.create_rental(date, book, person)
-            puts 'Rental recorded successfully.'
-          else
-            puts 'Invalid date format. Please use YYYY-MM-DD format.'
-          end
-        else
-          puts "Book '#{book_title}' not found."
-        end
+        create_rental_for_person(person)
       else
         puts "Person with ID #{person_id} not found."
       end
     else
       puts 'Invalid person ID. Please enter a valid ID.'
+    end
+  end
+
+  def create_rental_for_person(person)
+    puts 'Enter book title to be rented:'
+    book_title = gets.chomp
+    book = @library_manager.books.find { |b| b.title == book_title }
+
+    if book
+      puts 'Enter rental date (YYYY-MM-DD):'
+      date = gets.chomp
+
+      if InputValidator.validate_date_input(date)
+        @library_manager.create_rental(date, book, person)
+        puts 'Rental recorded successfully.'
+      else
+        puts 'Invalid date format. Please use YYYY-MM-DD format.'
+      end
+    else
+      puts "Book '#{book_title}' not found."
     end
   end
 

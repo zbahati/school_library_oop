@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4f6bfb93c39e3aaff095ea9ab8107059662d510c
 require_relative 'person_class'
 require_relative 'book_class'
 require_relative 'rental_class'
@@ -29,4 +32,8 @@ class LibraryManager
     @rentals << rental
     rental
   end
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 4f6bfb93c39e3aaff095ea9ab8107059662d510c
