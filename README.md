@@ -78,6 +78,15 @@ Install this project with:
 
 ```
 
+### Run the system in command line
+
+```sh
+ruby ./main.rb
+
+```
+
+
+
 ### Run tests
 
 To run tests, run the following command:
