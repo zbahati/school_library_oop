@@ -1,10 +1,12 @@
 # menu.rb
 require_relative 'library_manager'
 require_relative 'input_validator'
+require_relative 'menu_data/list_all_books'
 
 class Menu
   def initialize(library_manager)
     @library_manager = library_manager
+    @list_all_books_options = ListAllBooks.new(library_manager)
   end
 
   def display_menu
@@ -27,7 +29,8 @@ class Menu
 
   def handle_choice(choice)
     if MENU_OPTIONS.key?(choice)
-      send(MENU_OPTIONS[choice][:action])
+      action = MENU_OPTIONS[choice][:action]
+      send(action)
     else
       puts 'Invalid choice. Please choose a valid option.'
     end
@@ -37,19 +40,20 @@ class Menu
     (1..7).include?(choice)
   end
 
+  # list all books
   def list_all_books
-    puts 'List of All Books:'
-    @library_manager.books.each do |book|
-      puts "#{book.title} by #{book.author}"
-    end
+    @list_all_books_options.list_all_books
   end
 
+  # list all people
   def list_all_people
     puts 'List of All People:'
     @library_manager.people.each do |person|
       puts "#{person.name} (ID: #{person.id})"
     end
   end
+
+  # list all Teacher
 
   def create_person
     puts 'Create a Person:'

@@ -9,6 +9,7 @@ require_relative 'book_class'
 require_relative 'rental_class'
 
 library_manager = LibraryManager.new
+library_manager.load_data_from_json
 menu = Menu.new(library_manager)
 
 loop do
