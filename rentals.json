@@ -1,1 +1,1 @@
-[]
+["{\"date\":\"date\",\"book\":{\"id\":null,\"title\":null,\"author\":null,\"rentals\":[]},\"person\":{\"age\":null,\"name\":null,\"parent_permission\":null,\"id\":null}}","{\"date\":\"2020-12-21\",\"book\":{\"id\":878,\"title\":\"Ill\",\"author\":\"Bry\",\"rentals\":[]},\"person\":{\"age\":23,\"name\":\"Tad\",\"parent_permission\":true,\"id\":597}}"]

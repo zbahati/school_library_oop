@@ -25,6 +25,28 @@ class Person < Nameable
     book.add_rental(rental)
   end
 
+  def to_json(*_args)
+    {
+      age: @age,
+      name: @name,
+      parent_permission: @parent_permission,
+      id: @id
+    }
+  end
+
+  def self.from_json(data)
+    age = data['age']
+    name = data['name']
+    parent_permission = data['parent_permission']
+    id = data['id']
+
+    # Create and return a new Person object with the extracted data
+    person = Person.new(age, name, parent_permission: parent_permission)
+    person.instance_variable_set(:@id, id)
+    person.instance_variable_set(:@name, name)
+    person
+  end
+
   private
 
   def of_age?

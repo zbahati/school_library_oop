@@ -28,10 +28,16 @@ class LibraryManager
   end
 
   def create_rental(date, book, person)
-    rental = Rental.new(date, book, person)
-    @rentals << rental
-    save_data_to_json
-    rental
+    # Check if the book and person exist
+    if @books.include?(book) && @people.include?(person)
+      rental = Rental.new(date, book, person)
+      @rentals << rental
+      save_data_to_json
+      rental
+    else
+      puts 'Book or person not found. Rental not created.'
+      nil
+    end
   end
 
   def save_data_to_json
@@ -58,9 +64,8 @@ class LibraryManager
       @books = books_data.map { |book_data| Book.from_json(book_data) }
     end
 
-    return unless File.exist?('rentals.json')
-
-    rentals_data = JSON.parse(File.read('rentals.json'))
-    @rentals = rentals_data.map { |rental_data| Rental.from_json(rental_data) }
+    if File.exist?('rentals.json')
+      @rentals = Rental.load_all_from_json('rentals.json', @books, @people)
+    end
   end
 end
