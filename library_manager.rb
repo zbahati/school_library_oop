@@ -13,12 +13,25 @@ class LibraryManager
     load_data_from_json
   end
 
+  # def create_person(age, name, specialization = nil)
+  #   person = specialization ? Teacher.new(specialization, age, name) : Student.new(age, name)
+  #   @people << person
+  #   save_data_to_json
+  #   person
+  # end
+
   def create_person(age, name, specialization = nil)
-    person = specialization ? Teacher.new(specialization, age, name) : Student.new(age, name)
+    if specialization
+      person = Teacher.new(specialization, age, name)
+    else
+      person = Student.new(age, name)
+    end
+
     @people << person
     save_data_to_json
     person
   end
+
 
   def create_book(title, author)
     book = Book.new(title, author)

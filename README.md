@@ -110,6 +110,11 @@ no deployement available for this time
 
 ## 👥 Authors <a name="authors"></a>
 
+👤 **Sodeeq Olaide Awoyemi**
+
+- GitHub: [@githubhandle](https://github.com/Errytagedesign)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/errytagedesigns/)
+
 👤 **Bahati**
 
 - GitHub: [@githubhandle](https://github.com/zbahati/)
