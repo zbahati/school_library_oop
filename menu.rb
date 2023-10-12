@@ -2,11 +2,13 @@
 require_relative 'library_manager'
 require_relative 'input_validator'
 require_relative 'menu_data/list_all_books'
+require_relative 'menu_data/list_all_people'
 
 class Menu
   def initialize(library_manager)
     @library_manager = library_manager
     @list_all_books_options = ListAllBooks.new(library_manager)
+    @list_all_people_options = ListAllPeople.new(library_manager)
   end
 
   def display_menu
@@ -47,10 +49,7 @@ class Menu
 
   # list all people
   def list_all_people
-    puts 'List of All People:'
-    @library_manager.people.each do |person|
-      puts "#{person.name} (ID: #{person.id})"
-    end
+    @list_all_people_options.list_all_people
   end
 
   # list all Teacher

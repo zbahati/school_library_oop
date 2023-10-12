@@ -57,10 +57,5 @@ class LibraryManager
       books_data = JSON.parse(File.read('books.json'))
       @books = books_data.map { |book_data| Book.from_json(book_data) }
     end
-
-    return unless File.exist?('rentals.json')
-
-    rentals_data = JSON.parse(File.read('rentals.json'))
-    @rentals = rentals_data.map { |rental_data| Rental.from_json(rental_data) }
   end
 end
