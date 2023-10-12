@@ -41,8 +41,6 @@ class Person < Nameable
   def self.from_json(data)
     age = data['age'].to_i
     name = data['name']
-    type = data['type']
-    specialization = data['specialization']
     parent_permission = data['parent_permission']
     id = data['id'].to_i
 

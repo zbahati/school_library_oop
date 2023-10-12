@@ -82,17 +82,41 @@
   {
     "age": 40,
     "name": "Mac",
-    "type": "teacher",
-    "specialization": "Engineer",
+    "type": "",
+    "specialization": "",
     "parent_permission": true,
     "id": 350
   },
   {
     "age": 20,
     "name": "Edge",
-    "type": "student",
+    "type": "",
     "specialization": "",
     "parent_permission": true,
     "id": 394
+  },
+  {
+    "age": 24,
+    "name": "Lyda",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 396
+  },
+  {
+    "age": 20,
+    "name": "Johon",
+    "type": "student",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 117
+  },
+  {
+    "age": 20,
+    "name": "Test",
+    "type": "teacher",
+    "specialization": "Testing",
+    "parent_permission": true,
+    "id": 908
   }
 ]
