@@ -35,10 +35,10 @@ class Person < Nameable
   end
 
   def self.from_json(data)
-    age = data['age']
+    age = data['age'].to_i
     name = data['name']
     parent_permission = data['parent_permission']
-    id = data['id']
+    id = data['id'].to_i
 
     # Create and return a new Person object with the extracted data
     person = Person.new(age, name, parent_permission: parent_permission)

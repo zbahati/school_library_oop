@@ -48,14 +48,23 @@ class LibraryManager
   end
 
   def load_data_from_json
-    if File.exist?('people.json')
-      people_data = JSON.parse(File.read('people.json'))
-      @people = people_data.map { |person_data| Person.from_json(person_data) }
-    end
+    load_people_from_json if File.exist?('people.json')
+    load_books_from_json if File.exist?('books.json')
+    load_rentals_from_json if File.exist?('rentals.json')
+  end
 
-    if File.exist?('books.json')
-      books_data = JSON.parse(File.read('books.json'))
-      @books = books_data.map { |book_data| Book.from_json(book_data) }
-    end
+  def load_people_from_json
+    people_data = JSON.parse(File.read('people.json'))
+    @people = people_data.map { |person_data| Person.from_json(person_data) }
+  end
+
+  def load_books_from_json
+    books_data = JSON.parse(File.read('books.json'))
+    @books = books_data.map { |book_data| Book.from_json(book_data) }
+  end
+
+  def load_rentals_from_json
+    rentals_data = JSON.parse(File.read('rentals.json'))
+    @rentals = rentals_data.map { |rental_data| Rental.from_json(rental_data, @books, @people) }
   end
 end

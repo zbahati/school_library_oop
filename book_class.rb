@@ -23,9 +23,11 @@ class Book
   # Read data from json
   def self.from_json(data)
     book = Book.new(data['title'], data['author'])
-    data['rentals'].each do |rental_data|
-      rental = Rental.from_json(rental_data)
-      book.add_rental(rental)
+    if data['rentals'].is_a?(Array)
+      data['rentals'].each do |rental_data|
+        rental = Rental.from_json(rental_data)
+        book.add_rental(rental)
+      end
     end
     book
   end
