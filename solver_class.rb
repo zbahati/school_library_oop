@@ -1,4 +1,2 @@
-# class Solver
-#   def factorial(n)
-#   end
-# end
+class Solver
+end
