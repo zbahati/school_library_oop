@@ -10,4 +10,6 @@ class Solver
     end
     result
   end
+
+  
 end

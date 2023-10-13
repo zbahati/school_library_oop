@@ -15,4 +15,11 @@ describe Solver do
       expect(Solver.new.factorial(3)).to eq(6)
     end
   end
+
+  describe '#reverse' do
+
+    it 'return the reverse of the word given' do
+      expect(Solver.new.reverse('hello')).to eq('olleh')
+    end
+  end
 end
