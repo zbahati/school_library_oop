@@ -4,13 +4,5 @@ class Solver
       raise ArgumentError 'Input should be non negative numbers'
     end
     result = 1
-
-    # (1..n).each do |i|
-    #   result * = i;
-    # end
-    # result
   end
 end
-
-solver = Solver.new
-puts solver.factorial(0)
