@@ -26,6 +26,18 @@ describe Solver do
     it 'returns fuzz when given number is divided by 3' do
       expect(Solver.new.fuzzbuzz(3)).to eq('fuzz')
     end
+
+    it 'returns buzz when given number is divided by 5' do
+      expect(Solver.new.fuzzbuzz(10)).to eq('buzz')
+    end
+
+    it 'returns fuzzbuzz when given number is divided by both 3 and 5' do
+      expect(Solver.new.fuzzbuzz(15)).to eq('fuzzbuzz')
+    end
+
+    it 'returns the same number if then number given is not divided by both 3 and 5' do
+      expect(Solver.new.fuzzbuzz(7)).to eq(7)
+    end
   end
 
 end
