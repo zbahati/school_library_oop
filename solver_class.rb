@@ -1,7 +1,7 @@
 class Solver
   def factorial(n)
     if n < 0
-      raise ArgumentError 'Input should be non negative numbers'
+      raise ArgumentError, 'Input should be non negative number'
     end
     result = 1
 
