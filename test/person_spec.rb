@@ -1,5 +1,7 @@
 require 'rspec'
 require_relative '../person_class'
+require_relative '../book_class'
+require_relative '../rental_class'
 
 describe Person do
   let(:person) { Person.new(25, 'John', parent_permission: true) }
@@ -53,5 +55,17 @@ describe Person do
     expect(parsed_person.name).to eq('John')
     expect(parsed_person.can_use_services?).to be(true)
     expect(parsed_person.id).to eq(123)
+  end
+
+  it 'can rent a book' do
+    person = Person.new(25, 'John', parent_permission: true)
+    book = Book.new('The Great Gatsby', 'F. Scott Fitzgerald')
+    date = '2023-10-12'
+
+    person.add_rental(book, date)
+    expect(book.rentals.count).to eq(1)
+    rental = book.rentals.first
+    expect(rental.person).to eq(person)
+    expect(rental.date).to eq(date)
   end
 end

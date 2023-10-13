@@ -13,4 +13,9 @@ describe LibraryManager do
       expect(teacher.name).to eq('Mr. Smith')
     end
   end
+
+  it 'can use services' do
+    teacher = Teacher.new('Math', 35, 'Mr. Smith', parent_permission: true)
+    expect(teacher.can_use_services?).to be(true)
+  end
 end
