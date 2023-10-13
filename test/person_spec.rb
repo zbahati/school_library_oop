@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../person_class'  # Make sure the path is correct
+require_relative '../person_class'
 
 describe Person do
   let(:person) { Person.new(25, 'John', parent_permission: true) }

@@ -28,5 +28,4 @@ describe Rental do
     expect(json_data[:book]).to eq('The Great Gatsby')
     expect(json_data[:person]).to eq(person.id)
   end
-
 end
