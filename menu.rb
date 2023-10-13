@@ -1,6 +1,9 @@
 # menu.rb
 require_relative 'library_manager'
 require_relative 'input_validator'
+require_relative 'menu_data/list_all_books'
+require_relative 'menu_data/list_all_people'
+require_relative 'menu_data/list_all_rentals'
 
 class Menu
   def initialize(library_manager)
@@ -21,13 +24,14 @@ class Menu
     3 => { label: 'Create a teacher or student', action: :create_person },
     4 => { label: 'Create a book', action: :create_book },
     5 => { label: 'Create a rental', action: :create_rental },
-    6 => { label: 'List rentals for a person', action: :list_rentals_for_person },
+    6 => { label: 'List all rentals', action: :list_all_rentals },
     7 => { label: 'Quit', action: :quit }
   }.freeze
 
   def handle_choice(choice)
     if MENU_OPTIONS.key?(choice)
-      send(MENU_OPTIONS[choice][:action])
+      action = MENU_OPTIONS[choice][:action]
+      send(action)
     else
       puts 'Invalid choice. Please choose a valid option.'
     end
@@ -38,16 +42,17 @@ class Menu
   end
 
   def list_all_books
-    puts 'List of All Books:'
+    puts 'List of all books:'
     @library_manager.books.each do |book|
-      puts "#{book.title} by #{book.author}"
+      puts "Title: #{book.title}, Author: #{book.author}"
     end
   end
 
   def list_all_people
-    puts 'List of All People:'
+    puts 'List of all people (teachers and students):'
     @library_manager.people.each do |person|
-      puts "#{person.name} (ID: #{person.id})"
+      puts "Name: #{person.name}, Age: #{person.age}, ID: #{person.id}"
+      puts "Specialization: #{person.specialization}" if person.is_a?(Teacher)
     end
   end
 
@@ -153,25 +158,10 @@ class Menu
     end
   end
 
-  def list_rentals_for_person
-    puts 'Enter person\'s ID to list their rentals:'
-    person_id = gets.chomp
-
-    if InputValidator.validate_integer_input(person_id)
-      person_id = person_id.to_i
-      person = @library_manager.people.find { |p| p.id == person_id }
-
-      if person
-        puts "Rentals for #{person.name} (ID: #{person.id}):"
-        rentals = @library_manager.rentals.select { |r| r.person == person }
-        rentals.each do |rental|
-          puts "#{rental.date}: #{rental.book.title} by #{rental.book.author}"
-        end
-      else
-        puts "Person with ID #{person_id} not found."
-      end
-    else
-      puts 'Invalid person ID. Please enter a valid ID.'
+  def list_all_rentals
+    puts 'List of all rentals:'
+    @library_manager.rentals.each do |rental|
+      puts "Date: #{rental.date}, Book: #{rental.book.title}, Person: #{rental.person.name}, ID: #{rental.person.id}"
     end
   end
 

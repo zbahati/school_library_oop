@@ -1,0 +1,122 @@
+[
+  {
+    "age": 21,
+    "name": "Ade",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 509
+  },
+  {
+    "age": 13,
+    "name": "Sane",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 191
+  },
+  {
+    "age": 20,
+    "name": "Bahati",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 989
+  },
+  {
+    "age": 25,
+    "name": "Bahati",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 420
+  },
+  {
+    "age": 20,
+    "name": "Bahati",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 609
+  },
+  {
+    "age": 24,
+    "name": "Alex",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 308
+  },
+  {
+    "age": 45,
+    "name": "RE",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 557
+  },
+  {
+    "age": 20,
+    "name": "Jack",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 708
+  },
+  {
+    "age": 23,
+    "name": "Jackson",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 780
+  },
+  {
+    "age": 45,
+    "name": "Jack ma",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 787
+  },
+  {
+    "age": 40,
+    "name": "Mac",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 350
+  },
+  {
+    "age": 20,
+    "name": "Edge",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 394
+  },
+  {
+    "age": 24,
+    "name": "Lyda",
+    "type": "",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 396
+  },
+  {
+    "age": 20,
+    "name": "Johon",
+    "type": "student",
+    "specialization": "",
+    "parent_permission": true,
+    "id": 117
+  },
+  {
+    "age": 20,
+    "name": "Test",
+    "type": "teacher",
+    "specialization": "Testing",
+    "parent_permission": true,
+    "id": 908
+  }
+]

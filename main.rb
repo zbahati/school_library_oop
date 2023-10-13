@@ -1,4 +1,5 @@
 require_relative 'library_manager'
+require_relative 'data_manager'
 require_relative 'menu'
 require_relative 'person_class'
 require_relative 'student_class'
@@ -8,6 +9,7 @@ require_relative 'book_class'
 require_relative 'rental_class'
 
 library_manager = LibraryManager.new
+library_manager.load_data_from_json
 menu = Menu.new(library_manager)
 
 loop do

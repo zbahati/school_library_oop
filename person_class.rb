@@ -1,7 +1,7 @@
 require_relative 'nameable_class'
 
 class Person < Nameable
-  attr_accessor :name, :age
+  attr_accessor :name, :age, :type, :specialization
   attr_reader :id
 
   def initialize(age, name = 'Unknown', parent_permission: true)
@@ -10,6 +10,8 @@ class Person < Nameable
     @id = Random.rand(1..1000)
     @name = name
     @age = age
+    @type = ''
+    @specialization = ''
   end
 
   def can_use_services?
@@ -23,6 +25,30 @@ class Person < Nameable
   def add_rental(book, date)
     rental = Rental.new(date, book, self)
     book.add_rental(rental)
+  end
+
+  def to_json(*_args)
+    {
+      age: @age,
+      name: @name,
+      type: @type,
+      specialization: @specialization,
+      parent_permission: @parent_permission,
+      id: @id
+    }
+  end
+
+  def self.from_json(data)
+    age = data['age'].to_i
+    name = data['name']
+    parent_permission = data['parent_permission']
+    id = data['id'].to_i
+
+    # Create and return a new Person object with the extracted data
+    person = Person.new(age, name, parent_permission: parent_permission)
+    person.instance_variable_set(:@id, id)
+    person.instance_variable_set(:@name, name)
+    person
   end
 
   private
