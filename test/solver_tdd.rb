@@ -17,9 +17,15 @@ describe Solver do
   end
 
   describe '#reverse' do
-
     it 'return the reverse of the word given' do
       expect(Solver.new.reverse('hello')).to eq('olleh')
     end
   end
+
+  describe "#fuzzbuzz" do
+    it 'returns fuzz when given number is divided by 3' do
+      expect(Solver.new.fuzzbuzz(3)).to eq('fuzz')
+    end
+  end
+
 end
