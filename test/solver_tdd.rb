@@ -1,10 +1,9 @@
 require 'rspec'
 require_relative '../solver_class'
 describe Solver do
-
   describe '#factorial' do
     it 'Raises exception  when given any negative number' do
-      expect{Solver.new.factorial(-1)}.to raise_error(ArgumentError)
+      expect { Solver.new.factorial(-1) }.to raise_error(ArgumentError)
     end
     it 'returns 1 when given 0' do
       expect(Solver.new.factorial(0)).to eq(1)
@@ -22,7 +21,7 @@ describe Solver do
     end
   end
 
-  describe "#fuzzbuzz" do
+  describe '#fuzzbuzz' do
     it 'returns fuzz when given number is divided by 3' do
       expect(Solver.new.fuzzbuzz(3)).to eq('fuzz')
     end
@@ -39,5 +38,4 @@ describe Solver do
       expect(Solver.new.fuzzbuzz(7)).to eq(7)
     end
   end
-
 end
